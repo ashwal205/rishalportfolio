@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rishal Portfolio</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #ffffff;
+            --text: #111111;
+            --primary: #4b6eff;
+            --card: #f0f0f0;
+        }
+
+        body.dark {
+            --bg: #0c0f17;
+            --text: #ffffff;
+            --primary: #6f8dff;
+            --card: #131a24;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            transition: 0.4s ease;
+        }
+
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            padding: 15px 7%;
+            background: rgba(0,0,0,0.05);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 999;
+        }
+
+        nav .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 26px;
+            height: 3px;
+            background: var(--text);
+            transition: 0.3s;
+        }
+
+        @media (max-width: 850px) {
+            nav ul {
+                position: absolute;
+                top: 75px;
+                right: -100%;
+                background: var(--card);
+                flex-direction: column;
+                gap: 20px;
+                padding: 25px;
+                width: 220px;
+                border-radius: 12px;
+                transition: 0.4s;
+            }
+            nav ul.active {
+                right: 20px;
+            }
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        /* Theme Button */
+        #theme-toggle {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-left: 20px;
+        }
+
+        /* HERO */
+        .hero {
+            padding: 130px 7% 100px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+        }
+
+        .hero-text p {
+            margin-top: 15px;
+            line-height: 1.7;
+            max-width: 500px;
+        }
+
+        .hero-video {
+            width: 420px;
+            border-radius: 20px;
+            overflow: hidden;
+            animation: float 4s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-14px); }
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-video {
+                width: 90%;
+            }
+        }
+
+        /* SECTION HEADERS */
+        .section-title {
+            text-align: center;
+            font-size: 34px;
+            margin: 30px 0;
+        }
+
+        /* ABOUT */
+        .about {
+            padding: 60px 7%;
+            display: flex;
+            gap: 40px;
+        }
+
+        .about img {
+            width: 270px;
+            border-radius: 16px;
+        }
+
+        .about p {
+            line-height: 1.7;
+        }
+
+        @media(max-width: 850px) {
+            .about {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* SERVICES */
+        .services {
+            padding: 50px 7%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--card);
+            padding: 25px;
+            border-radius: 14px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+        }
+
+        /* CONTACT SECTION */
+        .contact {
+            padding: 60px 7%;
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .contact form {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            gap: 14px;
+        }
+
+        .contact input,
+        .contact textarea {
+            padding: 14px;
+            border-radius: 10px;
+            border: none;
+            background: var(--card);
+            color: var(--text);
+        }
+
+        .contact button {
+            padding: 14px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .contact button:hover {
+            opacity: 0.8;
+        }
+
+        /* Interactive contact card */
+        .contact-box {
+            background: var(--card);
+            padding: 25px;
+            border-radius: 14px;
+            width: 280px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+
+        .contact-box:hover {
+            transform: scale(1.05);
+        }
+
+        @media(max-width: 850px) {
+            .contact {
+                flex-direction: column;
+            }
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+    <div class="logo">Rishal Sharma</div>
+
+    <ul id="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <button id="theme-toggle">Light/Dark</button>
+
+    <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+    <div class="hero-text">
+        <h1>Crafting Digital Experiences That Inspire, Engage, and Convert</h1>
+        <p>I create modern, stylish, and high performance websites that help brands stand out.  
+        Smooth animations, responsive UI, and clean design — your project deserves nothing less.</p>
+    </div>
+
+    <video class="hero-video" autoplay muted loop>
+        <source src="https://cdn.pixabay.com/vimeo/56753.mp4" type="video/mp4">
+    </video>
+</section>
+
+<!-- ABOUT -->
+<h2 class="section-title" id="about">About Me</h2>
+
+<section class="about">
+    <img src="data:image/jpeg;base64,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" alt="profile">
+
+    <div>
+        <p>
+            I am a passionate web developer specializing in interactive and visually stunning websites.  
+            I focus on clean UI/UX, high performance, and modern design principles that help businesses present their best version online.
+        </p>
+        <p>
+            My work blends creativity with functionality — making sure your website not only looks good, but works flawlessly across all devices.
+        </p>
+    </div>
+</section>
+
+<!-- SERVICES -->
+<h2 class="section-title" id="services">My Services</h2>
+
+<div class="services">
+    <div class="service-card">
+        <h3>Modern Web Design</h3>
+        <p>Clean, responsive and beautiful websites with animations, dark mode, and custom layouts.</p>
+    </div>
+
+    <div class="service-card">
+        <h3>Branding & Identity</h3>
+        <p>Logos, colour palettes, typography systems that strengthen your brand identity.</p>
+    </div>
+
+    <div class="service-card">
+        <h3>Website Optimization</h3>
+        <p>Improve speed, SEO, accessibility, and performance for a flawless user experience.</p>
+    </div>
+</div>
+
+<!-- CONTACT -->
+<h2 class="section-title" id="contact">Contact</h2>
+
+<section class="contact">
+    <form >
+        <input type="text" placeholder="Your Name">
+        <input type="email" placeholder="Email Address">
+        <textarea rows="5" placeholder="Your Message"></textarea>
+        <button type="submit">Send Message</button>
+    </form>
+
+    <div class="contact-box">
+        <h3>Let’s Work Together</h3>
+        <p>Email: rishalsharma665@yourgmail.com</p>
+        <p>Phone: +679 504 6666</p>
+        <p>Location: Fiji</p>
+    </div>
+</section>
+
+<footer>
+    © 2025 Rishal — All Rights Reserved
+</footer>
+
+<script>
+    /* Mobile Menu */
+    const hamburger = document.getElementById("hamburger");
+    const navLinks = document.getElementById("nav-links");
+
+    hamburger.onclick = () => {
+        navLinks.classList.toggle("active");
+    };
+
+    /* Theme Toggle */
+    const toggleBtn = document.getElementById("theme-toggle");
+
+    // Load saved theme
+    if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark");
+    }
+
+    toggleBtn.onclick = () => {
+        document.body.classList.toggle("dark");
+        localStorage.setItem("theme",
+            document.body.classList.contains("dark") ? "dark" : "light");
+    };
+</script>
+
+</body>
+</html>
