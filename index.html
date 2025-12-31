@@ -119,8 +119,39 @@
             padding: 8px 14px;
             border-radius: 8px;
             cursor: pointer;
-            margin-left: 20px;
+            margin-left: 10px;
         }
+ #theme-toggle-desktop {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+@media (max-width: 850px) {
+    #theme-toggle-desktop {
+        display: none;
+    }
+}
+
+/* Hide theme button inside menu on desktop */
+.theme-item {
+    display: none;
+}
+
+/* Show theme button only in hamburger menu */
+@media (max-width: 850px) {
+    .theme-item {
+        display: block;
+    }
+
+    #theme-toggle {
+        width: 100%;
+        text-align: center;
+    }
+}
 
         /* HERO */
         .hero {
@@ -293,9 +324,19 @@
         <li><a href="#about">About</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#contact">Contact</a></li>
+<li class="theme-item">
+    <button id="theme-toggle">
+        <img src="https://cdn-icons-png.flaticon.com/512/466/466300.png"
+             height="20" width="20">
+    </button>
+</li>
     </ul>
+ 
+     <button id="theme-toggle-desktop">
+        <img src="https://cdn-icons-png.flaticon.com/512/466/466300.png"
+             height="20" width="20">
+    </button>
 
-    <button id="theme-toggle">Light/Dark</button>
 
     <div class="hamburger" id="hamburger">
         <span></span><span></span><span></span>
@@ -382,6 +423,7 @@
 
     hamburger.onclick = () => {
         navLinks.classList.toggle("active");
+	
     };
 
     /* Theme Toggle */
@@ -397,6 +439,19 @@
         localStorage.setItem("theme",
             document.body.classList.contains("dark") ? "dark" : "light");
     };
+
+ const toggleBtnd = document.getElementById("theme-toggle-desktop");
+
+ if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark");
+    }
+
+    toggleBtnd.onclick = () => {
+        document.body.classList.toggle("dark");
+        localStorage.setItem("theme",
+            document.body.classList.contains("dark") ? "dark" : "light");
+    };
+
 </script>
 
 </body>
