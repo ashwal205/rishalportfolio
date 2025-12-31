@@ -312,31 +312,40 @@
         }
     </style>
 </head>
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
 <script>
-(function () {
-    emailjs.init("PfjXgcqujnpY9RahX"); // 👈 replace
-})();
+document.addEventListener("DOMContentLoaded", function () {
 
-const form = document.getElementById("contact-form");
+    emailjs.init("PfjXgcqujnpY9RahX");
 
-form.addEventListener("submit", function (e) {
-    e.preventDefault();
+    const form = document.getElementById("contact-form");
 
-    emailjs.sendForm(
-        "service_sz9gwef",   // 👈 replace
-        "template_xdeqpmi",  // 👈 replace
-        this
-    ).then(() => {
-        alert("✅ Message sent successfully!");
-        form.reset();
-    }).catch((error) => {
-        alert("❌ Failed to send message");
-        console.error(error);
+    if (!form) {
+        console.error("❌ contact-form not found");
+        return;
+    }
+
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        emailjs.sendForm(
+            "service_sz9gwef",
+            "template_xdeqpmi",
+            this
+        ).then(() => {
+            alert("✅ Message sent successfully!");
+            form.reset();
+        }).catch((error) => {
+            alert("❌ Failed to send message");
+            console.error("EmailJS error:", error);
+        });
     });
+
 });
 </script>
+
+
 
 <body>
 
@@ -482,5 +491,6 @@ form.addEventListener("submit", function (e) {
 
 </body>
 </html>
+
 
 
