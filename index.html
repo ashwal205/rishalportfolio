@@ -312,6 +312,31 @@
         }
     </style>
 </head>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<script>
+(function () {
+    emailjs.init("PfjXgcqujnpY9RahX"); // 👈 replace
+})();
+
+const form = document.getElementById("contact-form");
+
+form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    emailjs.sendForm(
+        "service_y5sfzcu",   // 👈 replace
+        "template_xdeqpmi",  // 👈 replace
+        this
+    ).then(() => {
+        alert("✅ Message sent successfully!");
+        form.reset();
+    }).catch((error) => {
+        alert("❌ Failed to send message");
+        console.error(error);
+    });
+});
+</script>
 
 <body>
 
@@ -397,12 +422,13 @@
 <h2 class="section-title" id="contact">Contact</h2>
 
 <section class="contact">
-    <form >
-        <input type="text" placeholder="Your Name">
-        <input type="email" placeholder="Email Address">
-        <textarea rows="5" placeholder="Your Message"></textarea>
-        <button type="submit">Send Message</button>
-    </form>
+    <form id="contact-form">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Email Address" required>
+    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+    <button type="submit">Send Message</button>
+</form>
+
 
     <div class="contact-box">
         <h3>Let’s Work Together</h3>
